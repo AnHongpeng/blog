@@ -1,3 +1,9 @@
+/**
+ * @File：系统基本配置
+ */
+
+const querystring = require('querystring')
+
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 
@@ -8,6 +14,9 @@ const serverHandler = (req, res) => {
   // 获取 path
   const url = req.url
   req.path = url.split('?')[0] // 一次性计算 path 后赋给 req
+
+  // 解析 query
+  req.query = querystring.parse(url.split('?')[1])
 
   // 处理 blog 路由
   const blogData = handleBlogRouter(req, res)
