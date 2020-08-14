@@ -18,10 +18,6 @@
 
 ## 操作数据库
 
-### 建库
-
-### 建表
-
 ### 表操作
 
 * 增、删、改、查
@@ -42,23 +38,40 @@ insert into users (username, `password`, realname) values ('lisi', '123', '李�
 #### 查询
 
 ``` sql
--- 从 users 表中将所有列都查出来
-select * from users;
+select * from users; -- 从 users 表中将所有列都查出来
 
 select id, username from users;
 
 select * from users where username='zhangsan';
 
+select * from users where state <>'0'; -- 不等于
+
 select * from users where username='zhangsan' and `password`='123';
 
 select * from users where username='zhangsan' or `password`='123';
 
--- 模糊查询
-select * from users where username like '%zhang%';
+select * from users where username like '%zhang%'; -- 模糊查询
 
 select * from users where `password` like '%1%';
 
 select * from users where `password` like '%1%' order by id desc;
+```
+
+#### 更新
+
+``` sql
+SET SQL_SAFE_UPDATES = 0;
+
+update users set realname='李四2' where username='lisi';
+```
+
+#### 删除
+
+``` sql
+delete from users where username='lisi';
+
+update users set state='0' where username='lisi'; -- 软删除，好处是数据可以恢复
+update users set state='1' where username='lisi'; -- 数据恢复
 ```
 
 ## 其他
