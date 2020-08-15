@@ -38,6 +38,8 @@ insert into users (username, `password`, realname) values ('lisi', '123', '李�
 #### 查询
 
 ``` sql
+select version(); -- 查询数据库版本
+
 select * from users; -- 从 users 表中将所有列都查出来
 
 select id, username from users;
@@ -55,6 +57,10 @@ select * from users where username like '%zhang%'; -- 模糊查询
 select * from users where `password` like '%1%';
 
 select * from users where `password` like '%1%' order by id desc;
+
+select * from blogs where author='lisi' order by createtime desc;
+
+select * from blogs where title like '%A%' order by createtime desc;
 ```
 
 #### 更新
