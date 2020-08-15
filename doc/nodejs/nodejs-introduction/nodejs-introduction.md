@@ -179,3 +179,15 @@ nodemon is a tool that helps develop node.js based applications by automatically
 
 * 初始化路由：根据之前技术方案的设计，做出路由
 * 返回假数据：将路由和数据处理分离，以符合设计原则
+
+### 路由与 API 区别
+
+API：前端和后端、不同端（子系统）之间对接的一个术语。一般包含：
+
+* url（路由）：E.g.'/api/blog/list'
+* 输入
+* 输出
+
+路由：
+* 可以理解成 API 的一部分；
+* 后端系统内部的一个定义；
