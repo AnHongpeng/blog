@@ -17,23 +17,26 @@ const getList = (author, keyword) => {
 
 // 获取博客详情 - GET
 const getDetail = (id) => {
-  return {
-    id: 1,
-    title: '标题A',
-    content: '内容A',
-    createTime: 1597216343115,
-    author: '安鸿鹏'
-  }
+  const sql = `select * from blogs where id='${id}'`
+  return exec(sql).then(rows => rows[0])
 }
 
 // 新建博客 - POST
 // @blogData：博客对象，包含 title、content 等属性
 const newBlog = (blogData = {}) => {
-  console.log('>>>>> New Blog Data:', blogData)
+  const { title, content, author } = blogData
+  const createtime = Date.now()
 
-  return {
-    id: 3 // 表示新建博客插入到数据表里的 id
-  }
+  const sql = `
+    insert into blogs (title, content, createtime, author)
+    values ('${title}', '${content}', ${createtime}, '${author}');
+  `
+
+  return exec(sql).then(insertData => {
+    return {
+      id: insertData.insertId
+    }
+  })
 }
 
 // 更新博客 - POST
