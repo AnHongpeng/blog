@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const blogRouter = require('./routes/blog');
+const userRouter = require('./routes/user');
 
 var app = express();
 
@@ -14,13 +16,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); // req.body 携带传参
+app.use(express.urlencoded({ extended: false })); // POST 接受其他传参方式
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 注册路由
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/blog', blogRouter);
+app.use('/api/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
