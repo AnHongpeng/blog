@@ -41,13 +41,29 @@ const newBlog = (blogData = {}) => {
 
 // 更新博客 - POST
 const updateBlog = (id, blogData = {}) => {
-  console.log('>>>>> Update Data:', id, blogData)
-  return true
+  const { title, content } = blogData
+  const sql = `
+    update blogs set title='${title}', content='${content}' where id=${id}
+  `
+
+  return exec(sql).then(updateData => {
+    if (updateData.affectedRows > 0) {
+      return true
+    }
+    return false
+  })
 }
 
 // 删除博客
-const delBlog = (id) => {
-  return true
+const delBlog = (id, author) => {
+  const sql = `delete from blogs where id=${id} and author='${author}';`
+
+  return exec(sql).then(delData => {
+    if (delData.affectedRows > 0) {
+      return true
+    }
+    return false
+  })
 }
 
 module.exports = {
