@@ -225,3 +225,69 @@ Project
 ```
 
 传递给 `findAndCountAll` 的 `options` 对象与 `findAll` 相同
+
+## （二）查询
+
+### where
+
+无论是通过 `findAll/find` 或批量 `updates/destroys` 进行查询，都可以传递一个 `where` 对象来过滤查询。
+
+`where` 通常用 `attribute: value` 键值对表示，其中 `value` 可以是匹配等式的数据或其他运算符的键值对对象，也可以是嵌套了 `or` 和 `and` 运算符的集合（生成复杂的 `AND/OR` 条件）。
+
+``` js
+const Op = Sequelize.Op;
+
+Post.findAll({
+  where: {
+    authorId: 2
+  }
+});
+// SELECT * FROM post WHERE authorId = 2
+
+Post.findAll({
+  where: {
+    authorId: 12,
+    status: 'active'
+  }
+});
+// SELECT * FROM post WHERE authorId = 12 AND status = 'active';
+
+Post.findAll({
+  where: {
+    [Op.or]: [{authorId: 12}, {authorId: 13}]
+  }
+});
+// SELECT * FROM post WHERE authorId = 12 OR authorId = 13;
+
+Post.findAll({
+  where: {
+    authorId: {
+      [Op.or]: [12, 13]
+    }
+  }
+});
+// SELECT * FROM post WHERE authorId = 12 OR authorId = 13;
+
+Post.destroy({
+  where: {
+    status: 'inactive'
+  }
+});
+// DELETE FROM post WHERE status = 'inactive';
+
+Post.update({
+  updatedAt: null,
+}, {
+  where: {
+    deletedAt: {
+      [Op.ne]: null
+    }
+  }
+});
+// UPDATE post SET updatedAt = null WHERE deletedAt NOT NULL;
+
+Post.findAll({
+  where: sequelize.where(sequelize.fn('char_length', sequelize.col('status')), 6)
+});
+// SELECT * FROM post WHERE char_length(status) = 6;
+```
