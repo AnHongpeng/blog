@@ -313,12 +313,6 @@ chart.on('axis-label:mouseleave', ev => {});
 chart.on('axis-label:click', ev => {});
 ```
 
-### 自定义动画
-
-AntV 3.0 动画模块也从底层做了深入的优化，支持自定义动画，也更加流畅。
-
-![自定义动画](https://picb.zhimg.com/v2-0bdced9dc9e061a89d87bdd49f34cc9c_b.webp)
-
 ### 支持分面（Facet）图表
 
 分面，将一份数据按照某个维度分隔成若干子集，然后创建一个图表的矩阵，将每一个数据子集绘制到图形矩阵的窗格中。
