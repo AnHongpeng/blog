@@ -56,3 +56,54 @@ TypeScript 可以在您运行代码之前找到错误并提供修复，从而改
 * 如果 TS 无法分析变量类型的话，我们就需要使用「类型注解」了
 
 总之，无论是被动地让 TS 自动推断类型，还是主动地使用类型注解，目的都是使得所有变量都有确定的类型。这样程序的执行是可预测的。
+
+## 注解函数
+
+设置函数返回值的类型注解：
+
+``` typescript
+function add(first: number, second: number): number {
+  return first + second + '' // 这样就会报错
+}
+const total = add(1, 2)
+```
+
+函数没有返回值：
+
+``` typescript
+function sayHello(): void {
+  console.log('hello')
+  return '' // 这样就会报错
+}
+```
+
+函数永远不可能执行到最后：
+
+``` typescript
+function errorEmmitter(): never {
+  throw new Error()
+  console.log('我没法执行完')
+
+  // while(true) {} // 或者一直在循环做一些事情
+}
+```
+
+函数参数接收解构的内容，如何进行类型注解：
+
+``` typescript
+function add2(
+  { first, second }: { first: number, second: number }
+): number {
+  return first + second
+}
+const total2 = add2({ first: 1, second: 2 })
+```
+
+在使用1个属性的解构语法时，很容易写错：
+``` typescript
+function getNumber({ first }: { first: number }) {
+  return first
+}
+
+const number = getNumber({ first: 1 })
+```
