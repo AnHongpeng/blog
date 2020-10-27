@@ -29,3 +29,9 @@ TypeScript 可以在您运行代码之前找到错误并提供修复，从而改
 * 优势1：TS 的静态类型，使得我们在开发阶段就能发现潜在的问题
 * 优势2：编辑器提供更友好的代码提示
 * 优势3：代码即文档。代码语义更清晰易懂
+
+## TypeScript 基础环境搭建
+
+1. 想要运行 TS，先要有 NodeJS 环境
+2. `npm install typescript -g`
+3. 可选：`npm i -g ts-node`，然后 `ts-node demo.ts`
