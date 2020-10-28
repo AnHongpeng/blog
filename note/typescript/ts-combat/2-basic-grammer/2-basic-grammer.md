@@ -61,7 +61,7 @@ TypeScript 可以在您运行代码之前找到错误并提供修复，从而改
 
 设置函数返回值的类型注解：
 
-``` typescript
+``` ts
 function add(first: number, second: number): number {
   return first + second + '' // 这样就会报错
 }
@@ -70,7 +70,7 @@ const total = add(1, 2)
 
 函数没有返回值：
 
-``` typescript
+``` ts
 function sayHello(): void {
   console.log('hello')
   return '' // 这样就会报错
@@ -79,7 +79,7 @@ function sayHello(): void {
 
 函数永远不可能执行到最后：
 
-``` typescript
+``` ts
 function errorEmmitter(): never {
   throw new Error()
   console.log('我没法执行完')
@@ -90,7 +90,7 @@ function errorEmmitter(): never {
 
 函数参数接收解构的内容，如何进行类型注解：
 
-``` typescript
+``` ts
 function add2(
   { first, second }: { first: number, second: number }
 ): number {
@@ -100,10 +100,64 @@ const total2 = add2({ first: 1, second: 2 })
 ```
 
 在使用1个属性的解构语法时，很容易写错：
-``` typescript
+``` ts
 function getNumber({ first }: { first: number }) {
   return first
 }
 
 const number = getNumber({ first: 1 })
+```
+
+## 数组、元组与类型别名
+
+### 数组
+
+相同类型的数组元素：
+
+``` ts
+const numberArr = [1, 2, 3] // 类型是 number[]
+const stringArr = ['a', 'b', 'c'] // 类型是 string[]
+const undefinedArr: undefined[] = [undefined, undefined]
+```
+
+不同类型的数组元素：
+
+``` ts
+const arr: (number | string)[] = [1, '2', 3] // 类型是包含数字或字符串的数组
+```
+
+数组元素是对象：
+
+``` ts
+const objectArr: { name: string, age: number }[] = [{
+  name: '小安',
+  age: 18
+}]
+```
+
+类型别名 type alias：
+
+``` ts
+type User = { name: string, age: number }
+const objecrArr2: User[] = [{
+  name: '小安',
+  age: 18
+}]
+```
+
+类在数组中的使用：
+
+``` ts
+class Teacher {
+  name: string,
+  age: number
+}
+
+const teacherArr: Teacher[] = [
+  new Teacher(),
+  { // 该对象虽然不是 new Teacher() 生成的实例，但也满足 Teacher 实例的要求
+    name: '小安',
+    age: 18
+  }
+]
 ```
