@@ -276,3 +276,7 @@ const say: SayHi = (word: string) => {
 ```
 
 注意：接口是在开发过程中，TS 帮助我们进行语法提示用的。当 .ts 文件编译成 .js 文件后，TS 会把 interface 和类型这些全部剔除掉，它并不会成为最终的 JavaScript 代码。
+
+## 类
+
+TS 中的类和 JS 中的类是类似的，只不过 TS 提供了类的更多特性。
