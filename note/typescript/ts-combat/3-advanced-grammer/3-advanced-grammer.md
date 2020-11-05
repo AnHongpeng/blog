@@ -101,3 +101,38 @@ function addSecond(first: object | NumberObj, second: object | NumberObj) {
   return 0;
 }
 ```
+
+## Enum 枚举类型
+
+枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能有七天，颜色限定为红绿蓝等。
+
+编码示例：
+
+``` ts
+enum Status {
+  // OFFLINE = 1,
+  OFFLINE,
+  ONLINE,
+  DELETED
+}
+
+console.log(Status.OFFLINE);
+console.log(Status.ONLINE);
+console.log(Status.DELETED);
+console.log(Status[0]); // OFFLINE
+
+function getResult(status) {
+  if (status === Status.OFFLINE) {
+    return 'offline';
+  } else if (status === Status.ONLINE) {
+    return 'online';
+  } else if (status === Status.DELETED) {
+    return 'deleted';
+  }
+  return 'error';
+}
+
+// const result = getResult(Status.OFFLINE);
+const result = getResult(1); // online
+console.log(result);
+```
