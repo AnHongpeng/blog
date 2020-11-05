@@ -19,8 +19,8 @@ const objecrArr2: User[] = [{
 
 // 类在数组中的使用
 class Teacher {
-  name: string,
-  age: number
+  name: string;
+  age: number;
 }
 
 const teacherArr: Teacher[] = [
