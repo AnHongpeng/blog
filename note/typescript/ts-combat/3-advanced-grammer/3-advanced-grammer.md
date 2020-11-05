@@ -27,3 +27,77 @@
 * `strictNullChecks`：默认是 `true`，意味着不允许把 `null` 赋值给其他基本类型变量
 
 详细的编译配置，可参考 [Compiler Options in MSBuild](https://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html)
+
+## 联合类型和类型保护
+
+联合类型：联合类型（Union Types）表示取值可以为多种类型中的一种。
+
+类型保护：能够在特定的区块中保护变量属于某种确定的类型，可以在此区块中放心的引用此类型的属性，或者调用此类型的方法。
+
+类型保护的常见方式：
+
+* 类型断言
+* in 语法
+* typeof 语法
+* instanceof 语法
+
+Eg.使用断言完成类型保护：
+
+``` ts
+interface Bird {
+  fly: boolean;
+  sing: () => {};
+}
+
+interface Dog {
+  fly: boolean;
+  bark: () => {}
+}
+
+function trainAnimail(animal: Bird | Dog) {
+  // 如果 animal.fly 值为 true，那么通过「断言」的方式认定 animal 类型就是 Bird
+  if (animal.fly) {
+    (animal as Bird).sing()
+  } else {
+    (animal as Dog).bark()
+  }
+}
+```
+
+Eg.使用 in 语法完成类型保护：
+
+``` ts
+function trainAnimailSeconde(animal: Bird | Dog) {
+  if ('sing' in animal) {
+    animal.sing()
+  } else {
+    animal.bark() // 注意这里 TS 可以自动推算出来
+  }
+}
+```
+
+Eg.使用 typeof 语法来做类型保护：
+
+``` ts
+function add(first: string | number, second: string | number) {
+  if (typeof first === 'string' || typeof second === 'string') {
+    return `${first}${second}`
+  }
+  return first + second;
+}
+```
+
+Eg.使用 instanceof 语法来做类型保护：
+
+``` ts
+class NumberObj {
+  count: number
+}
+
+function addSecond(first: object | NumberObj, second: object | NumberObj) {
+  if (first instanceof NumberObj && second instanceof NumberObj) {
+    return first.count + second.count;
+  }
+  return 0;
+}
+```
