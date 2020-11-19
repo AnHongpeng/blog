@@ -188,7 +188,7 @@ Example：
 
 ### 修饰符的特点
 
-* 修饰符的命名用来描述外观（“多大尺寸？” 或 “那套主题？” 等等 —— `size_s` 或者 `theme_islands`）；状态（“和其他块、元素有何不同？” —— `disabled`, `focused` 等）；还有行为（“它表现成如何？”或“它如何响应用户？” —— 例如 `directions_left-top`）
+* 修饰符的命名用来描述外观（“多大尺寸？” 或 “哪套主题？” 等等 —— `size_s` 或者 `theme_islands`）；状态（“和其他块、元素有何不同？” —— `disabled`, `focused` 等）；还有行为（“它表现成如何？”或“它如何响应用户？” —— 例如 `directions_left-top`）
 * 用单下划线 _ 来分割修饰符与块或元素的命名
 
 ### 修饰符类型
@@ -197,17 +197,17 @@ Example：
 
 * 当修饰符的存在与否起主要影响时使用 Boolean 类型。例如，`disabled`。当一个 Boolean 类型的修饰符存在时，假定它的值为 true。
 * 命名遵循以下形式：
-  * block-name_modifier-name
-  * block-name__element-name_modifier-name
+  * blockName__modifierName
+  * blockName-elementName__modifierName
 
 Example:
 
 ```html
-<!-- 为 `search-form` 块定义了 `focused` 这一 Boolean 类型的修饰符 -->
-<form class="search-form search-form_focused">
-    <input class="search-form__input">
+<!-- 为 `searchForm` 块定义了 `focused` 这一 Boolean 类型的修饰符 -->
+<form class="searchForm searchForm__focused">
+    <input class="searchForm__input">
     <!-- 为 `button` 元素定义了 `disabled` 这一 Boolean 类型的修饰符 -->
-    <button class="search-form__button search-form__button_disabled">Search</button>
+    <button class="searchForm-button searchForm-button__disabled">Search</button>
 </form>
 ```
 
