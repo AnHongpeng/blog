@@ -34,3 +34,19 @@ Windows 下安装后，右键有 `Git GUI Here` 和 `Git Bash Here` 两个菜单
 * 可以把项目代码暴露出去，这样他人可以把仓库的代码拷贝下来，学习、扩展或是帮助共同开发
 
 在 Repositories 栏目中点击 New 按钮来创建仓库。
+
+## 上传代码至 Github
+
+在 `.gitignore` 文件中列出提交时忽略的目录及文件 -> 不纳入版本控制
+
+`git init`：初始化一个 Git 仓库。之后可以查看项目目录下的隐藏文件。
+
+`git add .`
+
+`git commit -m 第一次提交`
+
+`git remote add origin git@github.com:anhongpeng/test.git`
+
+`git push -u origin master`
+
+刷新 Github 仓库页面，看到已上传的文件，那么上传成功
