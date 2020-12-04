@@ -39,14 +39,33 @@ Windows 下安装后，右键有 `Git GUI Here` 和 `Git Bash Here` 两个菜单
 
 在 `.gitignore` 文件中列出提交时忽略的目录及文件 -> 不纳入版本控制
 
-`git init`：初始化一个 Git 仓库。之后可以查看项目目录下的隐藏文件。
+`git init`：初始化一个 Git 仓库。之后可以查看项目目录下的隐藏文件 `.git`。
 
 `git add .`
 
-`git commit -m 第一次提交`
+`git commit -m "第一次提交"`
 
 `git remote add origin git@github.com:anhongpeng/test.git`
 
 `git push -u origin master`
 
 刷新 Github 仓库页面，看到已上传的文件，那么上传成功
+
+## 想要找到所有的操作记录时如何进行操作
+
+Git 通常将项目分为 3 个区：
+
+* 本地仓库
+* 暂存区：修改后的文件，等待提交到远程仓库
+* 远程仓库
+
+常用的 git 命令：
+
+* `git add .`：将所有要提交的文件，放入「暂存区」中；
+* `git commit -m "第一次提交"`：将「暂存区」中的文件，提交到远程仓库
+* `git status`：查看项目文件的改动状态
+* `git log`：查看提交记录
+
+其他使用方式：
+
+* `git log --author="安鸿鹏"`：查看某一个开发者的提交记录
